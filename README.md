@@ -36,7 +36,7 @@ A professional radiologist from AIIMS, is part of our project. She provided us w
 Since a single model indicated a strong ability to detect masses but were not sufficient for detection of calcifications which are much smaller and very different as compared to masses. We hence concluded that the same model cannot generalize to detect both masses and calcification. To address this problem, we developed an expert - discriminator network which trains two experts - one for masses and the other for calcifications. Both the experts were trained using the same faster RCNN framework, the only difference was that the loss terms were considered only for masses in the first expert and only for calcifications in the second. The aim was to overfit the one on masses and the other on calcifications so that the two units together are able to detect both types of lesions with high accuracy.
 Post training, when a new image is to be processed, it is sent through the two experts which will both perform their detections. The max scores from the two models is picked and those predictions are made.
 
-!(/images/proposed1)
+!(/images/proposed1.png)
 
 ## Sanity Check
 
@@ -54,22 +54,22 @@ Since our aim is to verify that Faster-RCNN does have localization capabilities,
 
 Take an image and make occlusions on the image in a sliding window style where the window is of 3 scales or sizes, approximately 1000-2000 images per test image depending on the size of the image. Run these images through the Faster-RCNN model. First did this for normal images like cats and dogs and ran it through FRCNN trained on VOC. Once we get the predictions for these images, for each pixel in the image we calculate a score. This score is the sum of the confidence scores of the bounding boxes in which the pixel is present. Then we normalize these scores and make a heat map. We got the following heatmaps for cat, dog, and breast:
 
-!(/images/cat1)
-!(/images/dog1)
-!(/images/breast1)
+!(/images/cat1.png)
+!(/images/dog1.png)
+!(/images/breast1.png)
 
 ## Perturbation Technique - II
 
 The above procedure has certain flaws which are eradicated in the perturbation technique II: The same procedure as above is followed initially; do the occlusions and get the predictions of these occluded images. Then we output the predictions of the original non-occluded images using FRCNN pretrained model. Then for each occluded image, we calculate the IOU between the predicted bounding box of that image and the predicted bounding box of the original image. We then add value : 1-IOU, to all the pixels within the occluded region. The reason for doing this is that if the IOU is high, that means that the occlusion didnt result in any change, thus the occluded region didnt have any attention. Whereas on the other hand if the IOU is low, that means that occlusion affected the prediction and hence is comprised of the attention region. If for a given occluded image there is no prediction, IOU =0. Finally we take this heatmap and normalize it and super-impose on the original image. Here are the results for normal images(using model trained on VOC) and breast images, using pretrained FRCNN model and Retinanet:
 
-!(/images/breast2)
-!(/images/breast3)
+!(/images/breast2.png)
+!(/images/breast3.png)
 
 ## Proposed Network 2
 
 After some analysis of the false positives and false negatives from the various testing datasets we used, we found out that in most of the cases the misses were in breasts which were dense. After performing experiments on mass vs calcification performance we realised that the shortcoming is not in separately identifying mass and calcifications, but in lesions belonging to breasts of different densities. Particularly, it was noticed that obscure masses often hidden in the fibro- grandular tissure were undetected. To tackle this problem, we hypothesized that if the dense tissues are normalised using an intensity transformation, the results may improve. Therefore we designed a network for density contrast modification. Our hypothesis was backed by the results presented in the paper: Photometric Transformer Networks and Label Adjustment for Breast Density Prediction.
 
-!(/images/proposed2)
+!(/images/proposed2.png)
 
 We use Photometric Tranformer Network to normalise the intensity of the images and hence reduce the deviation in the density of the breasts. For doing so, we designed a 5 layered Convolutional Neural Network with a 10 softmax outputs (S). These are the k=10 parameters which will be used in the function ’h’ to transform the input images. The authors introduce a function h, which uses k parameters. These k parameters and the function h is used to transform the input image and normalise it’s density. This neural network is trained on the fly with the Retinanet. As the function h is continuous and differentiable at all points, the loss can be fully back-propagated.
 
