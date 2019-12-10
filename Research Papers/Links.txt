@@ -1,0 +1,15 @@
+Links for BTP DL:
+Nature – https://www.nature.com/articles/s41598-018-22437-z.pdf
+https://www.idosi.org/mejsr/mejsr25(2)17/29.pdf
+
+https://journals.lww.com/investigativeradiology/Abstract/2017/07000/Deep_Learning_in_Mammography__Diagnostic_Accuracy.7.aspx
+https://arxiv.org/pdf/1603.07285v1.pdf
+http://yaroslavvb.blogspot.com/2011/09/notmnist-dataset.html
+https://onlinelibrary.wiley.com/doi/epdf/10.3322/canjclin.32.4.194
+https://link.springer.com/chapter/10.1007/978-3-642-40763-5_51
+https://ac.els-cdn.com/S1532046414000124/1-s2.0-S1532046414000124-main.pdf?_tid=3d4b1798-c750-48f4-b54e-3a0a08eb5a8a&acdnat=1532895137_44a8ffa6dbc553b509f9956cb80deaa0
+https://ac.els-cdn.com/S0933365702000283/1-s2.0-S0933365702000283-main.pdf?_tid=28591aba-3cbe-49da-8773-8cfee0820a16&acdnat=1532895182_b94bc3a2919dfbbcc118c538d50c5ee8
+https://ac.els-cdn.com/S0957417408001103/1-s2.0-S0957417408001103-main.pdf?_tid=ae903c0f-7999-4829-b8e4-da50e7914a6e&acdnat=1532895193_38a0c71b377868c1b1f28719b71fc3a5
+https://www.nature.com/articles/srep27327
+https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7412749
+https://journals.lww.com/investigativeradiology/Abstract/2017/07000/Deep_Learning_in_Mammography__Diagnostic_Accuracy.7.aspx
